@@ -1,6 +1,9 @@
 name: Tests on push
 run-name: ${{ github.actor }} is testing commit on ${{github.ref_name}} 🚀
-on: [ push ]
+on:
+  push:
+    tags-ignore:
+      - rc-0.0.*
 jobs:
   Test-and-lint-code:
     runs-on: ubuntu-latest
