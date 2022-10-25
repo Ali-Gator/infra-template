@@ -21,7 +21,7 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - name: Testing files...
-      - run: npm run test
+        run: npm run test
       - name: Linting files...
-      - run: npm run lint
+        run: npm run lint
       - run: echo "🍏 This job's status is ${{ job.status }}."
