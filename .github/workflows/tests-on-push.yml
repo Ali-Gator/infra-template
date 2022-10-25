@@ -1,5 +1,5 @@
 name: Tests on push
-run-name: ${{ github.actor }} is testing commit on ${{github.ref}} 🚀
+run-name: ${{ github.actor }} is testing commit on ${{github.ref_name}} 🚀
 on: [ push ]
 jobs:
   Test-and-lint-code:
@@ -26,4 +26,6 @@ jobs:
         run: npm run test
       - name: Linting files...
         run: npm run lint
+      - name: Type checking...
+        run: npm run ts
       - run: echo "🍏 This job's status is ${{ job.status }}."
