@@ -36,5 +36,7 @@ jobs:
     needs: Test-and-lint-code
     runs-on: ubuntu-latest
     steps:
+      - name: Making build...
+        run: npm run build
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
