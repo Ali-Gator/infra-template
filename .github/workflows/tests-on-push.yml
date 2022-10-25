@@ -1,5 +1,5 @@
 name: Tests on push
-run-name: ${{ github.actor }} is testing commit on ${{github.ref_name}} 🚀
+run-name: ${{ github.actor }} is testing commit on ${{github.ref}} 🚀
 on: [ push ]
 jobs:
   Test-and-lint-code:
