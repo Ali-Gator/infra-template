@@ -8,4 +8,4 @@ jobs:
   Test-and-lint-code:
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/workflows/tests-on-push
+      - uses: .github/workflows/tests-on-push
