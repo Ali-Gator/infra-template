@@ -33,17 +33,16 @@ jobs:
         run: npm run ts
       - name: Making build
         run: npm run build
-      - name: Setting up environment
+      - name: Install dependencies
+        run: |
+          cd .github/workflows/scripts
+          npm ci
         env:
           RELEASE_VERSION: ${{github.ref_name}}
           AUTHOR: ${{github.actor}}
           AUTH_TOKEN: ${{secrets.AUTH}}
           ORG_ID: ${{secrets.ORG_ID}}
           TICKET_ID: ${{secrets.TICKET_ID}}
-      - name: Install dependencies
-        run: |
-          cd .github/workflows/scripts
-          npm ci
       - name: Updating ticket title
         run: node .github/workflows/scripts/ticketUpdate.js
       - name: Build the Docker image and updating ticket comment
