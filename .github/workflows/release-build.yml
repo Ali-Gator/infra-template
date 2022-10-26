@@ -33,7 +33,7 @@ jobs:
         run: npm run ts
       - name: Making build
         run: npm run build
-      - name: Install dependencies
+      - name: Install build dependencies
         run: |
           cd .github/workflows/scripts
           npm ci

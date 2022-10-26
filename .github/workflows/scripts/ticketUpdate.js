@@ -40,7 +40,7 @@ const getCommits = async (prevReleaseNumber) => {
       }
     };
 
-    let tags = prevReleaseNumber ? `${prevReleaseNumber}...${RELEASE_VERSION}` : RELEASE_VERSION;
+    let tags = prevReleaseNumber ? `${prevReleaseNumber}..${RELEASE_VERSION}` : RELEASE_VERSION;
     await exec('git log', ['--pretty=format:"%h %an %s"', tags], options);
 
     const isError = myError.length > 0;
