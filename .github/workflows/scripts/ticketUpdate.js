@@ -45,8 +45,7 @@ const getCommits = async (prevReleaseNumber) => {
 
     const isError = myError.length > 0;
     if (isError) {
-      console.log('There was an error while taking the commits');
-      return null;
+      throw Error('There was an error while taking the commits', myError);
     } else {
       const commits = myOutput.replace(/"/g, '');
       console.log('Commits have founded: ', commits);
