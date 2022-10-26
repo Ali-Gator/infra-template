@@ -13,12 +13,6 @@ jobs:
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v3
-      - name: Set env
-        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-      - name: Test
-        run: |
-          echo $RELEASE_VERSION
-          echo ${{ env.RELEASE_VERSION }}
       - name: Install node.js 16.16.0
         uses: actions/setup-node@v3
         with:
@@ -31,15 +25,27 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
-      - name: Testing files...
+      - name: Testing files
         run: npm run test
-      - name: Linting files...
+      - name: Linting files
         run: npm run lint
-      - name: Type checking...
+      - name: Type checking
         run: npm run ts
-      - name: Making build...
+      - name: Making build
         run: npm run build
-      - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag cool-project:$(date +%s)
+      - name: Setting up environment
+        env:
+          RELEASE_VERSION: ${{github.ref_name}}
+          AUTHOR: ${{github.actor}}
+          AUTH_TOKEN: ${{secrets.AUTH}}
+          ORG_ID: ${{secrets.ORG_ID}}
+          TICKET_ID: ${{secrets.TICKET_ID}}
+      - name: Install dependencies
+        run: |
+          cd .github/workflows/scripts
+          npm ci
+      - name: Updating ticket title
+        run: node .github/workflows/scripts/ticketUpdate.js
+      - name: Build the Docker image and updating ticket comment
+        run: node .github/workflows/scripts/buildImage.js
       - run: echo "🍏 This job's status is ${{ job.status }}."
-
