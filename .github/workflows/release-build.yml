@@ -37,14 +37,19 @@ jobs:
         run: |
           cd .github/workflows/scripts
           npm ci
+      - name: Updating ticket title
         env:
           RELEASE_VERSION: ${{github.ref_name}}
           AUTHOR: ${{github.actor}}
           AUTH_TOKEN: ${{secrets.AUTH}}
           ORG_ID: ${{secrets.ORG_ID}}
           TICKET_ID: ${{secrets.TICKET_ID}}
-      - name: Updating ticket title
         run: node .github/workflows/scripts/ticketUpdate.js
       - name: Build the Docker image and updating ticket comment
+        env:
+          RELEASE_VERSION: ${{github.ref_name}}
+          AUTH_TOKEN: ${{secrets.AUTH}}
+          ORG_ID: ${{secrets.ORG_ID}}
+          TICKET_ID: ${{secrets.TICKET_ID}}
         run: node .github/workflows/scripts/buildImage.js
       - run: echo "🍏 This job's status is ${{ job.status }}."
