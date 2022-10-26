@@ -1,0 +1,11 @@
+{
+  "name": "ticket-update",
+  "version": "1.0.0",
+  "main": "ticketUpdate.js",
+  "author": "Oleg Gordienov",
+  "license": "ISC",
+  "dependencies": {
+    "@actions/exec": "^1.1.1",
+    "node-fetch": "^3.2.10"
+  }
+}
