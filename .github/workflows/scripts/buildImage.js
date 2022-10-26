@@ -28,7 +28,7 @@ const addComment = async () => {
 const buildDockerImage = async () => {
   try {
     console.log('Building image');
-    await exec.exec('docker', ['build', '.', '--file', 'Dockerfile', '--tag', `${tag}`]);
+    await exec('docker', ['build', '.', '--file', 'Dockerfile', '--tag', `${tag}`]);
     console.log('Docker image successfully built');
     await addComment();
   } catch (e) {
