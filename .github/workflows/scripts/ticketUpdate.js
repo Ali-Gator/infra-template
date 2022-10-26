@@ -1,5 +1,5 @@
-const fetch = require('node-fetch');
-const exec = require('@actions/exec');
+import fetch from 'node-fetch';
+import {exec} from "@actions/exec";
 
 const {RELEASE_VERSION, AUTHOR, AUTH_TOKEN, ORG_ID, TICKET_ID} = process.env;
 

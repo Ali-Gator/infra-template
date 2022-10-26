@@ -7,5 +7,6 @@
   "dependencies": {
     "@actions/exec": "^1.1.1",
     "node-fetch": "^3.2.10"
-  }
+  },
+  "type": "module"
 }
